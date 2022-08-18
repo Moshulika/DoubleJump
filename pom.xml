@@ -28,7 +28,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
             <resource>
                 <filtering>true</filtering>
-                <directory>${basedir}/src/com/Moshu/DoubleJump/resources/</directory>
+                <directory>${basedir}/src/com/Moshu/resources/</directory>
             </resource>
 
             <resource>

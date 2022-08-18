@@ -210,60 +210,6 @@ public class Locations {
     }
 
     /**
-     * Get a safe, random location
-     * @param w the world
-     * @param distance the distance from the center of the world
-     * @return the safe location
-     */
-    public static Location getRandomLocationMoreThan(org.bukkit.World w, int distance, int min) {
-
-        Location loc = Utils.randomCoordonatesMoreThan(w, distance, min);
-
-        int i = 0;
-
-        while (Locations.isUnsafe(loc)) {
-
-            if (i == 30) {
-                return loc;
-            }
-
-            loc = Utils.randomCoordonatesMoreThan(w, distance, min);
-
-            i++;
-        }
-
-        return loc;
-
-    }
-
-    /**
-     * Get a safe, random location
-     * @param w the world
-     * @param distance the distance from the center of the world
-     * @return the safe location
-     */
-    public static Location getRandomLocation(org.bukkit.World w, int distance) {
-
-        Location loc = Utils.randomCoordonates(w, distance);
-
-        int i = 0;
-
-        while (Locations.isUnsafe(loc)) {
-
-            if (i == 30) {
-                return loc;
-            }
-
-            loc = Utils.randomCoordonates(w, distance);
-
-            i++;
-        }
-
-        return loc;
-
-    }
-
-    /**
      * Check if a location is at least decent
      * @param loc the location
      * @return true/false

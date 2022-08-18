@@ -1,0 +1,18 @@
+##########################################
+#                                        #
+#                HEADER                  #
+#                                        #
+##########################################
+
+main: com.Moshu.DoubleJump.Main
+name: DoubleJump
+version: 18.8.22
+description: Double jump everywhere
+author: Moshu
+website: mc.b-zone.ro
+api-version: "1.19"
+
+permissions:
+  doublejump.use:
+    default: op
+    description: Use the double jump feature

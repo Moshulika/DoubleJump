@@ -1,0 +1,19 @@
+#Max continuous jumps
+max_jumps: 4
+
+#Cooldown for every jump in seconds
+cooldown: 2
+
+particle: CAMPFIRE_COZY_SMOKE
+sound: ENTITY_ENDER_DRAGON_FLAP
+
+enabled_worlds:
+  - "world"
+
+blacklisted_regions:
+  - "region"
+
+#Messages use Mini Messages format
+messages:
+  jump: "<dark_gray>(</dark_gray><aqua>✈</aqua><dark_gray>)</dark_gray> <white>Woosh! (%jumps%/%maxjumps%)"
+  maxjumps: "<dark_gray>(</dark_gray><red>❌</red><dark_gray>)</dark_gray> <white>You're tired, make sure you rest! (%jumps%/%maxjumps%)"
