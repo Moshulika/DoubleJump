@@ -21,7 +21,7 @@ public class DoubleJump implements Listener {
 
     public boolean canJump(Player p)
     {
-        return !hasJumped(p) || cooldown.get(p.getUniqueId()) <= getMaxJumps();
+        return !hasJumped(p) || cooldown.get(p.getUniqueId()) < getMaxJumps();
     }
 
     public int getMaxJumps()
@@ -87,7 +87,6 @@ public class DoubleJump implements Listener {
             if (p.getGameMode() == GameMode.SURVIVAL) {
 
                 if (p.isInvulnerable()) return;
-                if (p.isFlying()) return;
 
                     if(!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
 
@@ -110,7 +109,7 @@ public class DoubleJump implements Listener {
         }
 
         return false;
-    }
+    }// jump toggle
 
     private static boolean enabledWorld(Player p)
     {
@@ -123,11 +122,12 @@ public class DoubleJump implements Listener {
         Player p = e.getPlayer();
 
         if (p.isFlying()) return;
-        if(p.hasPermission("doublejump.use")) return;
+        if (!p.hasPermission("doublejump.use")) return;
 
         e.setCancelled(true);
 
         if (p.isSwimming() || p.isSneaking()) return;
+        if(p.getGameMode() != GameMode.SURVIVAL) return;
 
         if (!enabledWorld(p)) return;
         if (blacklistedRegion(p)) return;
@@ -138,13 +138,12 @@ public class DoubleJump implements Listener {
         }
 
         addJump(p);
-
         Utils.sendParsed(p, Utils.getLang("jump").replace("%jumps%", Integer.toString(getJumps(p))).replace("%maxjumps%", Integer.toString(getMaxJumps())));
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () ->
         {
             removeJump(p);
-        }, getCooldown() * 20);
+        }, getCooldown() * 20L);
 
 
         try {
@@ -156,6 +155,7 @@ public class DoubleJump implements Listener {
         }
 
         p.setVelocity(p.getLocation().getDirection().multiply(1).setY(1));
+
 
         try {
             Utils.sendSound(p, getSound());

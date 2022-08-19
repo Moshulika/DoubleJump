@@ -2,7 +2,7 @@
 max_jumps: 4
 
 #Cooldown for every jump in seconds
-cooldown: 2
+cooldown: 15
 
 particle: CAMPFIRE_COZY_SMOKE
 sound: ENTITY_ENDER_DRAGON_FLAP

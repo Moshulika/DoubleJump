@@ -61,19 +61,16 @@ public class Utils
         return Bukkit.getVersion().contains("Paper");
     }
 
-
-    private static MiniMessage mm = MiniMessage.miniMessage();
-
     public static void sendConsoleParsed(String s)
     {
-
+        MiniMessage mm = MiniMessage.miniMessage();
         Bukkit.getConsoleSender().sendMessage(mm.deserialize(s));
 
     }
 
     public static void sendParsed(Player p, String s)
     {
-
+        MiniMessage mm = MiniMessage.miniMessage();
         p.sendMessage(mm.deserialize(s));
 
     }

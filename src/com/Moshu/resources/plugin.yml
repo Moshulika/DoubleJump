@@ -10,7 +10,12 @@ version: 18.8.22
 description: Double jump everywhere
 author: Moshu
 website: mc.b-zone.ro
+softdepend:
+  - WorldGuard
+  - WorldEdit
 api-version: "1.19"
+libraries:
+  - "net.kyori:adventure-api:4.11.0"
 
 permissions:
   doublejump.use:
