@@ -94,22 +94,20 @@ public class DoubleJump implements Listener {
                 if (!p.hasPermission("doublejump.use")) return;
                 if (Commands.exempt(p)) return;
 
+                if (!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
+
+                    if (p.getVelocity().getY() < -0.08) {
+                        p.setAllowFlight(false);
+                        return;
+                    }
+
+                }
+
                 elapsed = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - times.get(p.getUniqueId()));
 
-                    if(!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
-
-                        if (p.getVelocity().getY() < -0.08)
-                        {
-                            p.setAllowFlight(false);
-                            return;
-                        }
-
-                    }
-
-                    if(elapsed > 4)
-                    {
-                        if (p.getVelocity().getY() < -0.08) p.setAllowFlight(false);
-                    }
+                if (elapsed > 4) {
+                    if (p.getVelocity().getY() < -0.08) p.setAllowFlight(false);
+                }
 
             }
         }
