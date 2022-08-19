@@ -12,12 +12,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 public class DoubleJump implements Listener {
 
     private static Map<UUID, Integer> cooldown = new HashMap<>();
     private static Plugin plugin = Bukkit.getPluginManager().getPlugin("DoubleJump");
+    private static HashMap<UUID, Long> times = new HashMap<>();
 
     public boolean canJump(Player p)
     {
@@ -73,6 +75,8 @@ public class DoubleJump implements Listener {
         cooldown.put(p.getUniqueId(), getJumps(p) - 1);
     }
 
+    double elapsed;
+
     /**
      * Untested
      * @param e event
@@ -88,10 +92,22 @@ public class DoubleJump implements Listener {
 
                 if (p.isInvulnerable()) return;
                 if (!p.hasPermission("doublejump.use")) return;
-                if(Commands.exempt(p)) return;
+                if (Commands.exempt(p)) return;
+
+                elapsed = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - times.get(p.getUniqueId()));
 
                     if(!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
 
+                        if (p.getVelocity().getY() < -0.08)
+                        {
+                            p.setAllowFlight(false);
+                            return;
+                        }
+
+                    }
+
+                    if(elapsed > 4)
+                    {
                         if (p.getVelocity().getY() < -0.08) p.setAllowFlight(false);
                     }
 
@@ -161,6 +177,7 @@ public class DoubleJump implements Listener {
         double y = plugin.getConfig().getDouble("jump.y", 1);
 
         p.setVelocity(p.getLocation().getDirection().multiply(m).setY(y));
+        times.put(p.getUniqueId(), System.currentTimeMillis());
 
 
         try {
