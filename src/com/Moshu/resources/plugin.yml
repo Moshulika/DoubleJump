@@ -6,7 +6,7 @@
 
 main: com.Moshu.DoubleJump.Main
 name: DoubleJump
-version: 18.8.22
+version: 19.8.22
 description: Double jump everywhere
 author: Moshu
 website: mc.b-zone.ro
@@ -17,7 +17,18 @@ api-version: "1.19"
 libraries:
   - "net.kyori:adventure-api:4.11.0"
 
+commands:
+  dj:
+    permission: doublejump.use
+    description: Toggle your double jump
+    aliases:
+      - doublejump
+      - jump
+
 permissions:
   doublejump.use:
     default: op
     description: Use the double jump feature
+  doublejump.exempt:
+    default: op
+    description: Exmpets the player from the double jump

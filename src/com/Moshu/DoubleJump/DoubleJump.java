@@ -87,6 +87,7 @@ public class DoubleJump implements Listener {
             if (p.getGameMode() == GameMode.SURVIVAL) {
 
                 if (p.isInvulnerable()) return;
+                if (!p.hasPermission("doublejump.use")) return;
 
                     if(!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
 

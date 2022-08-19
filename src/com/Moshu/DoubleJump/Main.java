@@ -32,6 +32,7 @@ public class Main extends JavaPlugin implements WebSocket.Listener {
         s.sendMessage(ChatColor.translateAlternateColorCodes('&', "&fPermissions: &c" + pdfFile.getPermissions().size()));
         s.sendMessage(ChatColor.translateAlternateColorCodes('&', " "));
 
+        getCommand("dj").setExecutor(new Commands());
         Bukkit.getPluginManager().registerEvents(new DoubleJump(), this);
 
         createFiles();

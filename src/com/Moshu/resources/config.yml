@@ -17,3 +17,5 @@ blacklisted_regions:
 messages:
   jump: "<dark_gray>(</dark_gray><aqua>✈</aqua><dark_gray>)</dark_gray> <white>Woosh! (%jumps%/%maxjumps%)"
   maxjumps: "<dark_gray>(</dark_gray><red>❌</red><dark_gray>)</dark_gray> <white>You're tired, make sure you rest! (%jumps%/%maxjumps%)"
+  toggle: "<dark_gray>(</dark_gray><aqua>✈</aqua><dark_gray>)</dark_gray> <white>You toggled your double jump!"
+  wrong-cmd: "<dark_gray>(</dark_gray><aqua>❌</aqua><dark_gray>)</dark_gray> <white>Oops! Use /dj toggle"

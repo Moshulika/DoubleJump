@@ -75,6 +75,43 @@ public class Utils
 
     }
 
+    /**
+     * Formats a message with legacy color codes and also HEX
+     * @param message the message you want to apply colors to
+     * @return the formatted string
+     */
+    public static String format(String message) {
+//ceva nu merge aici daca e stringu prea mic cred si de aici se fute globalu??
+
+        if (message == null || message.length() == 0) return message;
+
+        Pattern pattern = Pattern.compile("#[a-fA-F0-9]{6}");
+        Matcher matcher = pattern.matcher(message);
+
+        String color;
+
+        while (matcher.find()) {
+            color = message.substring(matcher.start(), matcher.end());
+            message = message.replace(color, net.md_5.bungee.api.ChatColor.of(color) + "");
+            matcher = pattern.matcher(message);
+        }
+
+
+        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', message);
+
+    }
+
+    /**
+     * @hidden
+     */
+    public static void sendNoAccess(Player p)
+    {
+        String i = ChatColor.translateAlternateColorCodes('&', "&c&lOops");
+        String m = ChatColor.translateAlternateColorCodes('&', "&fYou don't have permission");
+        sendSound(p);
+        p.sendTitle(i, m, 30, 50, 30);
+    }
+
     public static String getLang(String path)
     {
         return plugin.getConfig().getString("messages." + path);
