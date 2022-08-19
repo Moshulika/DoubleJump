@@ -1,21 +1,54 @@
-#Max continuous jumps
+########################################################################
+#
+#
+# DOUBLE JUMP BY MOSHU
+#
+#
+########################################################################
+
+
+
+#Max continuous jumps for a player before he has to wait ##############
 max_jumps: 4
 
-#Cooldown for every jump in seconds
+########################################################################
+
+
+#Cooldown for every jump in seconds. Once he jumped once, this amount of seconds have to pass in order for him to gain one more jump
+
 cooldown: 15
+
+#Settings for the jump, you can use doubles as values (ex. 0.5) ########
+jump:
+  multiply: 1
+  y: 1
+
+#Particle and sounds that you wish to use ##############################
 
 particle: CAMPFIRE_COZY_SMOKE
 sound: ENTITY_ENDER_DRAGON_FLAP
 
+########################################################################
+
 enabled_worlds:
   - "world"
+
+########################################################################
+
 
 blacklisted_regions:
   - "region"
 
-#Messages use Mini Messages format
+########################################################################
+
+#Attention! Depending on your platform, you need to use different color codes!
+#For Paper users - use the new MiniMessage formatting: https://webui.adventure.kyori.net/
+#For Spigot or other platforms - use the old color codes (&c, &f), or use HEX like this: #80C7FDHello
+
 messages:
   jump: "<dark_gray>(</dark_gray><aqua>✈</aqua><dark_gray>)</dark_gray> <white>Woosh! (%jumps%/%maxjumps%)"
   maxjumps: "<dark_gray>(</dark_gray><red>❌</red><dark_gray>)</dark_gray> <white>You're tired, make sure you rest! (%jumps%/%maxjumps%)"
   toggle: "<dark_gray>(</dark_gray><aqua>✈</aqua><dark_gray>)</dark_gray> <white>You toggled your double jump!"
   wrong-cmd: "<dark_gray>(</dark_gray><aqua>❌</aqua><dark_gray>)</dark_gray> <white>Oops! Use /dj toggle"
+
+########################################################################

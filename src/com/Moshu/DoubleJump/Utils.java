@@ -63,17 +63,44 @@ public class Utils
 
     public static void sendConsoleParsed(String s)
     {
-        MiniMessage mm = MiniMessage.miniMessage();
-        Bukkit.getConsoleSender().sendMessage(mm.deserialize(s));
 
+        if(isPaper())
+        {
+            MiniMessage mm = MiniMessage.miniMessage();
+            Bukkit.getConsoleSender().sendMessage(mm.deserialize(s));
+        }
+        else {
+            Bukkit.getConsoleSender().sendMessage(Utils.format(s));
+        }
+
+    }
+
+    public static String parse(String s)
+    {
+        if(isPaper())
+        {
+            MiniMessage mm = MiniMessage.miniMessage();
+            return mm.serialize(mm.deserialize(s));
+        }
+        else {
+            return Utils.format(s);
+        }
     }
 
     public static void sendParsed(Player p, String s)
     {
-        MiniMessage mm = MiniMessage.miniMessage();
-        p.sendMessage(mm.deserialize(s));
+
+        if(isPaper())
+        {
+            MiniMessage mm = MiniMessage.miniMessage();
+            p.sendMessage(mm.deserialize(s));
+        }
+        else {
+            p.sendMessage(Utils.format(s));
+        }
 
     }
+
 
     /**
      * Formats a message with legacy color codes and also HEX

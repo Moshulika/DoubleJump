@@ -88,6 +88,7 @@ public class DoubleJump implements Listener {
 
                 if (p.isInvulnerable()) return;
                 if (!p.hasPermission("doublejump.use")) return;
+                if(Commands.exempt(p)) return;
 
                     if(!cooldown.containsKey(p.getUniqueId()) || getJumps(p) == 0) {
 
@@ -124,6 +125,7 @@ public class DoubleJump implements Listener {
 
         if (p.isFlying()) return;
         if (!p.hasPermission("doublejump.use")) return;
+        if(Commands.exempt(p)) return;
 
         e.setCancelled(true);
 
@@ -155,7 +157,10 @@ public class DoubleJump implements Listener {
             plugin.getLogger().log(Level.SEVERE, "Incorrect particle name! Check your config!");
         }
 
-        p.setVelocity(p.getLocation().getDirection().multiply(1).setY(1));
+        double m = plugin.getConfig().getDouble("jump.multiply", 1);
+        double y = plugin.getConfig().getDouble("jump.y", 1);
+
+        p.setVelocity(p.getLocation().getDirection().multiply(m).setY(y));
 
 
         try {
@@ -181,6 +186,7 @@ public class DoubleJump implements Listener {
                     if (p.getGameMode() != GameMode.SURVIVAL) continue;
                     if (p.getAllowFlight()) continue;
                     if (!p.hasPermission("doublejump.use")) continue;
+                    if(Commands.exempt(p)) continue;
                     if (!enabledWorld(p)) continue;
                     if (blacklistedRegion(p)) continue;
 
