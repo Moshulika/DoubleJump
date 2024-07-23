@@ -4,6 +4,7 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.plugin.Plugin;
@@ -134,6 +135,21 @@ public class DoubleJump implements Listener {
     private static boolean enabledWorld(Player p)
     {
         return plugin.getConfig().getStringList("enabled_worlds").contains(p.getLocation().getWorld().getName());
+    }
+
+    @EventHandler
+    public void onCreative(PlayerGameModeChangeEvent e)
+    {
+
+        if(e.getNewGameMode() == GameMode.CREATIVE)
+        {
+            Commands.addExemption(e.getPlayer());
+        }
+        else if(e.getNewGameMode() == GameMode.SURVIVAL)
+        {
+            Commands.removeExemption(e.getPlayer());
+        }
+
     }
 
     @EventHandler(ignoreCancelled = true)

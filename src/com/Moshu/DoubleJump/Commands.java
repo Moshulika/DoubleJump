@@ -22,6 +22,16 @@ public class Commands implements CommandExecutor {
 
     }
 
+    public static void addExemption(Player p)
+    {
+        a.add(p.getUniqueId());
+    }
+
+    public static void removeExemption(Player p)
+    {
+        a.remove(p.getUniqueId());
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
     {
