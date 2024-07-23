@@ -58,7 +58,14 @@ public class Utils
      */
     public static boolean isPaper()
     {
-        return Bukkit.getVersion().contains("Paper");
+        boolean isPaper = false;
+        try {
+            Class.forName("com.destroystokyo.paper.ParticleBuilder");
+            isPaper = true;
+        } catch (ClassNotFoundException ignored) {
+        }
+
+        return isPaper;
     }
 
     public static void sendConsoleParsed(String s)

@@ -25,7 +25,7 @@ jump:
 
 #Particle and sounds that you wish to use ##############################
 
-particle: CAMPFIRE_COZY_SMOKE
+particle: campfire_signal_smoke
 sound: ENTITY_ENDER_DRAGON_FLAP
 
 ########################################################################

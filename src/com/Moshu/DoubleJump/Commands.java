@@ -52,10 +52,10 @@ public class Commands implements CommandExecutor {
                 sender.sendMessage(Utils.format(" #80C7FD&lDOUBLE JUMP"));
                 sender.sendMessage(" ");
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &7Created by &fMoshu"));
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &f" + pdf.getCommands().size() + "&7 commands and &f" + pdf.getPermissions().size() + "&7 permissions loaded."));
                 sender.sendMessage(Utils.format("  &7Version " + pdf.getVersion()));
                 sender.sendMessage(" ");
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &7Use mc.b-zone.ro/discord for help."));
+                sender.sendMessage(Utils.format("  &7Use &f/dj toggle &7to change your mode"));
+                sender.sendMessage(ChatColor.translateAlternateColorCodes('&', "  &7Use mc.b-zone.ro/discord for more help."));
                 sender.sendMessage(" ");
 
             }

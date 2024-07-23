@@ -53,6 +53,9 @@ public class DoubleJump implements Listener {
 
     public int getJumps(Player p)
     {
+
+        if(cooldown.get(p.getUniqueId()) == null) return 0;
+
         return cooldown.get(p.getUniqueId());
     }
 
@@ -103,6 +106,7 @@ public class DoubleJump implements Listener {
 
                 }
 
+                times.putIfAbsent(p.getUniqueId(), 0L);
                 elapsed = TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - times.get(p.getUniqueId()));
 
                 if (elapsed > 4) {
@@ -148,14 +152,12 @@ public class DoubleJump implements Listener {
 
         if (!enabledWorld(p)) return;
         if (blacklistedRegion(p)) return;
+        if(p.getInventory().getChestplate() != null && p.getInventory().getChestplate().getType() == Material.ELYTRA) return;
 
         if (!canJump(p)) {
             Utils.sendParsed(p, Utils.getLang("maxjumps").replace("%jumps%", Integer.toString(getJumps(p))).replace("%maxjumps%", Integer.toString(getMaxJumps())));
             return;
         }
-
-        addJump(p);
-        Utils.sendParsed(p, Utils.getLang("jump").replace("%jumps%", Integer.toString(getJumps(p))).replace("%maxjumps%", Integer.toString(getMaxJumps())));
 
         Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, () ->
         {
@@ -177,6 +179,8 @@ public class DoubleJump implements Listener {
         p.setVelocity(p.getLocation().getDirection().multiply(m).setY(y));
         times.put(p.getUniqueId(), System.currentTimeMillis());
 
+        addJump(p);
+        Utils.sendParsed(p, Utils.getLang("jump").replace("%jumps%", Integer.toString(getJumps(p))).replace("%maxjumps%", Integer.toString(getMaxJumps())));
 
         try {
             Utils.sendSound(p, getSound());

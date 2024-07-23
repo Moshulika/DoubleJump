@@ -9,8 +9,5 @@
         <module name="DoubleJump" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="DoubleJump" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
